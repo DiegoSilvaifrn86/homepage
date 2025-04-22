@@ -1,11 +1,4 @@
-# site-simples-com-html-e-css
-
-Olá pra você que escolheu esse repositório! Nessa repositório você vai enconntrar um site bem simples feito com as tecnolgias html, css esse site(website) usando html e css foi feito apenas para praticar os estudos sobre programação front-end. Espero que gostes e também aproveita e vai dar uma passeada✌ lá no canal.
-
-## [🛠Assistir](https://www.youtube.com/watch?v=3R7QtNcwE3c)
-## [⚠Me Ajude](https://www.youtube.com/channel/UCxKIsX5OXyyNWVmomuDc-LA?sub_confirmation=1)
-# Preview
-![Como-Criar-um-SITE-Com-HTML-e-CSS-na-prática](/Como-Criar-um-SITE-Com-HTML-e-CSS-na-prática.png)
+# Comatizar a instalação do Apache2 e subir um Site
 
 Para criar um Script automatizado, primeiro devemos criar um arquivo comum no terminal e colocar os parametros nele
 Então, deve-se usar o sudo nano com o nome script.sh para declarar que esse arquivo é um script
@@ -20,4 +13,28 @@ else
 echo "Você ja possui um apache instalado"
 fi
 
-sudo mkdir -p /var/www/
+sudo mkdir -p /var/www/aluno/public_html
+cd /var/www/alunos/public_html
+sudo git clone https://github.com/matheusmanuel/site-simples-com-html-e-css-.git
+sudo cp -r site-simples-com-html-e-css-/
+cd /etc/apache2/sites-available/
+sudo tee aluno.conf<<EOF
+<VirtualHost *:80>
+        ServerAdmin admin@site1
+        ServerName site1
+        serverAlias www.site1
+        DocumentRoot /var/www/site1/public_html
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+<VirtualHost>
+EOF
+
+sudo a2ensite aluno.conf
+
+sudo echo "127.0.0.1   aluno" | sudo tee -a /etc/hosts
+
+sudo /etc/init.d/apache2 restart
+sudo /etc/init.d/apache2 status
+
+
+
